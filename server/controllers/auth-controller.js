@@ -1,4 +1,7 @@
 const User = require("../model/user");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
 
 const registerController = async (req, res) => {
   try {
@@ -33,7 +36,7 @@ const registerController = async (req, res) => {
   } catch (e) {
     console.error(e);
     res.status(500).json({
-      success: true,
+      success: false,
       message: "Internal server error",
     });
   }
@@ -75,7 +78,7 @@ const loginController = async (req, res) => {
       { expiresIn: "1d" }
     );
 
-    res.cokies("token",token,{ httpOnly: true, secure: true }).status(200).json(
+    res.cookie("token",token,{ httpOnly: true, secure: true }).status(200).json(
       {
         sucess: true,
         message : "Login successfully",
@@ -89,7 +92,7 @@ const loginController = async (req, res) => {
   } catch (e) {
     console.error(e);
     res.status(500).json({
-      success: true,
+      success: false,
       message: "Internal server error",
     });
   }
