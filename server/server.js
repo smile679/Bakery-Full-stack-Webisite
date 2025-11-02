@@ -7,7 +7,11 @@ const app = express()
 const PORT = process.env.PORT || 5000
 
 connectToDb()
-
+app.use(cors({
+  origin : "*",
+  methods : [ 'GET', 'PUT', 'POST', 'DELETE'],
+  Credential : true
+}))
 
 app.use(express.json());
 app.use("api/auth", authRouter)
