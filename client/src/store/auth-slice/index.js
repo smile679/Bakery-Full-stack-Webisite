@@ -3,12 +3,13 @@ import axios from 'axios'
 
 const initialState = {
   isLoading : false,
-  user,
+  isAuthenticated : false,
+  user : null,
 }
 
 export const registerUser = createAsyncThunk('auth/loginUser',
   async(formData)=>{
-    const response = await axios.post(`${meta.process.env.BACKEND_URL}/api/auth/login`,
+    const response = await axios.post(`${meta.process.env.BACKEND_URL}/api/auth/register`,
       formData, { withCredentials: true }
     )
 
@@ -26,11 +27,39 @@ export const loginUser = createAsyncThunk('auth/loginUser',
   }
 )
 
-const AuthSlice = createSlice({
+const authSlice = createSlice({
   name : 'Auth',
   initialState,
   reducers : {},
   extraReducers : (builder)=>{
-    builder.addCase()
+    builder.addCase('registerUser/pending', (state)=>{
+      state.isLoading = true
+    })
+    builder.addCase('registerUser/fulfilled', (state, action)=>{
+      state.isLoading = false
+      state.isAuthenticated = true
+      state.user = action.payload.data
+    })
+    builder.addCase('registerUser/rejected', (state)=>{
+      state.isLoading = false
+      state.isAuthenticated = false
+      state.user = null
+    })
+    builder.addCase('loginUser/pending', (state)=>{
+      state.isLoading = true
+    })
+    builder.addCase('loginUser/fulfilled', (state, action)=>{
+      state.isLoading = false
+      state.isAuthenticated = true
+      state.user = action.payload.data
+    })
+    builder.addCase('loginUser/rejected', (state)=>{
+      state.isLoading = false
+      state.isAuthenticated = false
+      state.user = null
+    })
   }
 })
+
+
+export default authSlice;

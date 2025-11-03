@@ -11,12 +11,13 @@ import NotFound from "./components/not-found/Layout";
 import Dashboard from "./pages/admin-view/Dashboard";
 import Home from "./pages/shopping-view/Home";
 import Listing from "./pages/shopping-view/Listing";
+import { useEffect } from "react";
 
 function App() {
-  const isAuthenticated = true; // Replace with actual authentication logic
-  const user = {
-    role: "user",
-  };
+
+  useEffect(()=>{
+
+  },[dispatch])
 
   return (
     <Routes>
