@@ -28,12 +28,9 @@ function Login() {
 
   function handleFormSubmit(e) {
     e.preventDefault();
-    console.log(formData, "formData");
     
     dispatch(loginUser(formData)).then(data=>{
       if(data.payload?.success){
-        console.log(data.payload)
-        
         toast.success(`${data.payload?.message}`)
       } else{
         toast.error(`${data.payload?.message === undefined ? 'account not found, please register!' : data.payload?.message }`)
@@ -42,7 +39,7 @@ function Login() {
   }
   return (
     <div className="w-full min-h-screen flex justify-center items-center p-4">
-      <div className="w-xl shadow-lg p-8 rounded-lg flex flex-col gap-2">
+      <div className="w-md shadow-lg p-8 rounded-lg flex flex-col gap-2">
         <div className="mb-5">
           <h2 className="text-2xl font-bold text-center">Login to Your Account</h2>
           <h3 className="text-sm text-center">Create an Account

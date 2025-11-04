@@ -2,7 +2,6 @@ const User = require("../model/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-
 const registerController = async (req, res) => {
   try {
     const { email, password, userName } = req.body;
@@ -33,7 +32,6 @@ const registerController = async (req, res) => {
       success: true,
       message: "user successfully registerd",
     });
-
   } catch (e) {
     console.error(e);
     res.status(500).json({
@@ -52,7 +50,6 @@ const loginController = async (req, res) => {
         message: "Please provide both email and password",
       });
     }
-    
 
     const user = await User.findOne({ email });
     if (!user) {
@@ -72,27 +69,29 @@ const loginController = async (req, res) => {
 
     const token = jwt.sign(
       {
-        id: user._id,
-        userName: user.userName,
-        email: user.email,
+        id: user?._id,
+        userName: user?.userName,
+        email: user?.email,
+        role: user?.role,
       },
       process.env.JWT_SECRET,
       { expiresIn: "1d" }
     );
 
-    res.cookie("token",token,{ httpOnly: true, secure: false }).status(200).json(
-      {
+    res
+      .cookie("token", token, { httpOnly: true, secure: false })
+      .status(200)
+      .json({
         success: true,
-        message : "Login successfully",
-        data: {
+        message: "Login successfully",
+        user: {
           userName: user.userName,
           email: user.email,
-          role : user.role,
+          role: user.role,
           token,
         },
-      }
-    )
-  } catch(e){
+      });
+  } catch (e) {
     console.error(e);
     res.status(500).json({
       success: false,
@@ -101,4 +100,38 @@ const loginController = async (req, res) => {
   }
 };
 
-module.exports = { loginController, registerController };
+const logoutController = (req, res) => {
+  res.clearCookie("token").status(200).json({
+    success: true,
+    message: "Logout successfully",
+  });
+};
+
+const authMiddleware = (req, res, next) => {
+  try {
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).json({
+        success: false,
+        message: "Access denied. No token provided.",
+      });
+    }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    req.user = decoded;
+    next();
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      success: false,
+      message: "Invalid or expired token. Please log in again.",
+    });
+  }
+};
+
+module.exports = {
+  loginController,
+  registerController,
+  logoutController,
+  authMiddleware,
+};

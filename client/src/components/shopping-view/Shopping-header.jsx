@@ -10,6 +10,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import { useDispatch, useSelector } from "react-redux";
+import { logOutUser, resetUserData } from "@/store/auth-slice";
+import { toast } from "sonner";
 
 
 function ShoppingHeader() {
@@ -33,12 +36,17 @@ function ShoppingHeader() {
   ];
   const navigate = useNavigate();
   const [ open, setOpen] = useState(null);
-  const isAuthenticated = false; // Replace with actual authentication logic
+  const dispatch = useDispatch()
+  const { isAuthenticated, user } = useSelector(state=>state.auth)
 
   function handleLogout() {
-    // Implement logout logic here
-    console.log("User logged out");
-    navigate("/auth/login");
+    dispatch(logOutUser()).then(data=>{
+      if(data.payload?.success){
+        dispatch(resetUserData())
+        toast("User successfully logout!")
+        navigate("/auth/login")
+      }
+    })
   }
 
   return (
@@ -76,7 +84,7 @@ function ShoppingHeader() {
               <ShoppingCart size="35px" className="mr-1 md:mr-5"/>
             </button>
             <button 
-              onClick={() => navigate("/auth/login")}
+              onClick={handleLogout}
               className="hidden sm:flex items-center text-white text-xl font-bold hover:text-gray-200 py-2 rounded-md transition duration-300 text-shadow-black text-shadow-sm cursor-pointer"
               >
                 Logout 
@@ -88,7 +96,7 @@ function ShoppingHeader() {
               <DropdownMenuTrigger>
                 <Menu
                   size="40px"
-                  stroke-width="3px"
+                  strokeWidth="3px"
                   className="text-white mx-5 hover:none"
                 />
               </DropdownMenuTrigger>

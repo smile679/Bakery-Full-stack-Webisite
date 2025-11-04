@@ -22,7 +22,27 @@ export const loginUser = createAsyncThunk('auth/loginUser',
     const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/login`,
        formData, { withCredentials: true }
     )
+    console.log(response?.data, 'response?.data');
+    return response?.data
+  }
+)
 
+export const logOutUser = createAsyncThunk('auth/logOutUser',
+  async()=>{
+    const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/logout`,
+      {}, { withCredentials: true }
+    )
+
+    return response?.data
+  }
+)
+
+export const checkOutUser = createAsyncThunk('auth/checkOutUser',
+  async()=>{
+    const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/auth/checkout`,
+       { withCredentials: true }
+    )
+    console.log(response?.data, 'response data in checkOutUser');
     return response?.data
   }
 )
@@ -30,7 +50,13 @@ export const loginUser = createAsyncThunk('auth/loginUser',
 const authSlice = createSlice({
   name : 'auth',
   initialState,
-  reducers : {},
+  reducers : {
+    resetUserData : (state)=>{
+      state.isLoading = false
+      state.isAuthenticated = false
+      state.user = null
+    }
+  },
   extraReducers : (builder)=>{
     builder.addCase(registerUser.pending, (state)=>{
       state.isLoading = true
@@ -50,16 +76,37 @@ const authSlice = createSlice({
     })
     .addCase(loginUser.fulfilled, (state, action)=>{
       state.isLoading = false
-      state.isAuthenticated = true
-      state.user = action.payload?.data
+      state.isAuthenticated = action.payload?.success ? true : false
+      state.user = action.payload?.success ? action.payload?.user : false
     })
     .addCase(loginUser.rejected, (state)=>{
       state.isLoading = false
       state.isAuthenticated = false
       state.user = null
     })
+    .addCase(logOutUser.pending, (state)=>{
+      state.isLoading = true
+    })
+    .addCase(logOutUser.fulfilled, (state, action)=>{
+      state.isLoading = false
+      state.isAuthenticated = false
+      state.user = null
+    })
+    .addCase(checkOutUser.pending, (state)=>{
+      state.isLoading = true
+    })
+    .addCase(checkOutUser.fulfilled, (state, action)=>{
+      state.isLoading = false
+      state.isAuthenticated = action.payload?.success ? true : false
+      state.user = action.payload?.success ? action.payload?.user : null
+    })
+    .addCase(checkOutUser.rejected, (state)=>{
+      state.isLoading = false
+      state.isAuthenticated = false
+       state.user = null
+    })
   }
 })
 
-
+export const { resetUserData } = authSlice.actions;
 export default authSlice.reducer;

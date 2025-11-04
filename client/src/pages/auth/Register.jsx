@@ -51,7 +51,7 @@ function Register() {
 
   return (
     <div className="w-full min-h-screen flex justify-center items-center p-4">
-      <div className="w-xl shadow-lg p-8 rounded-lg flex flex-col gap-2">
+      <div className="w-md shadow-lg p-8 rounded-lg flex flex-col gap-2">
         <div className="mb-5">
           <h2 className="text-2xl font-bold text-center">Create New Account</h2>
           <h3 className="text-sm text-center">You already have an account?

@@ -13,16 +13,23 @@ import Home from "./pages/shopping-view/Home";
 import Listing from "./pages/shopping-view/Listing";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { checkOutUser } from "./store/auth-slice";
+import { Spinner } from "./components/ui/spinner";
+import { LoaderIcon } from "lucide-react";
 
 function App() {
   const { isLoading, isAuthenticated, user } = useSelector(state=>state.auth)
   const dispatch = useDispatch()
-  console.log(isLoading, isAuthenticated, user );
-  
 
-  // useEffect(()=>{
-    
-  // },[dispatch])
+  useEffect(()=>{
+    dispatch(checkOutUser()).then(data=>console.log(data, 'data')
+    )
+  },[dispatch])
+
+  if(isLoading) 
+  return <div className="w-full min-h-screen flex justify-center items-center">
+          <Spinner />
+        </div>
 
   return (
     <Routes>
