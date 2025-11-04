@@ -52,7 +52,7 @@ function ShoppingHeader() {
   return (
     <header className="w-full py-2 bg-[url(@/assets/footer.png)] bg-cover bg-center fixed top-0 left-0 z-50 shadow-gray-950 shadow-md">
       <Fragment>
-        <nav className="w-full flex justify-between items-center px-5 md:px-10 sm:mr-10">
+        <nav className="w-full flex justify-between items-center  md:px-10 sm:mr-10">
           <div className="w-full flex items-center">
               <RouterLink to="/">
                 <img src={logo} className="w-14 h-14 ml-5 sm:ml-0 cursor-pointer box-shadow-gray-800"/>

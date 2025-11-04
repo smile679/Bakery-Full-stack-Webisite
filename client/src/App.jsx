@@ -22,8 +22,7 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(()=>{
-    dispatch(checkOutUser()).then(data=>console.log(data, 'data')
-    )
+    dispatch(checkOutUser())
   },[dispatch])
 
   if(isLoading) 
