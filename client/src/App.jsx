@@ -12,12 +12,17 @@ import Dashboard from "./pages/admin-view/Dashboard";
 import Home from "./pages/shopping-view/Home";
 import Listing from "./pages/shopping-view/Listing";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
+  const { isLoading, isAuthenticated, user } = useSelector(state=>state.auth)
+  const dispatch = useDispatch()
+  console.log(isLoading, isAuthenticated, user );
+  
 
-  useEffect(()=>{
-
-  },[dispatch])
+  // useEffect(()=>{
+    
+  // },[dispatch])
 
   return (
     <Routes>

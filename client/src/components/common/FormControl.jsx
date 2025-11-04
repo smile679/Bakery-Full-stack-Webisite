@@ -12,12 +12,13 @@ function FormControl({ formControls, formData, setFormData, onSubmit, buttonText
         element = (
           <Input
             type={control.type}
+            id={control.name}
             placeholder={control.placeholder || ''}
-            value={formData[control.label] || ''}
+            value={formData[control.name] || ''}
             onChange={(e) =>
               setFormData({
                 ...formData,
-                [control.label]: e.target.value,
+                [control.name]: e.target.value,
               })
             }
           />
@@ -27,13 +28,13 @@ function FormControl({ formControls, formData, setFormData, onSubmit, buttonText
         element = (
           <Input
             type={control.type}
-            id={control.label}
+            id={control.name}
             placeholder={control.placeholder || ''}
-            value={formData[control.label] || ''}
+            value={formData[control.name] || ''}
             onChange={(e) =>
               setFormData({
                 ...formData,
-                [control.label]: e.target.value,
+                [control.name]: e.target.value,
               })
             }
           />
@@ -44,22 +45,21 @@ function FormControl({ formControls, formData, setFormData, onSubmit, buttonText
     return element;
   }
   return (
-    <form className="flex flex-col gap-4">
+    <form onSubmit={onSubmit} className="flex flex-col gap-4">
       { formControls && formControls.map((control, index) => (
-          <div key={index} className="flex flex-col gap-3">
+          <div key={index} className="flex gap-3">
             <Label
-              htmlFor={control.label}
+              htmlFor={control.name}
               className="flex mb-2 font-semibold text-gray-700"
             >
               {`${control.label}:`}
-              {renderInputByComponentType(control)}
             </Label>
+              {renderInputByComponentType(control)}
           </div>
         ))
       }
       <Button
         type="submit"
-        onClick={onSubmit}
       >
         {buttonText}
       </Button>

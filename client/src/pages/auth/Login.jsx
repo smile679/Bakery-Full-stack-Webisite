@@ -1,28 +1,44 @@
 import FormControl from "@/components/common/FormControl";
+import { loginUser } from "@/store/auth-slice";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
 
 function Login() {
   const formControls = [
     {
       type: "input",
+      name : 'email',
       label: "Email",
       placeholder: "Enter your email",
     },
     {
       type: "input",
+      name : "password",
       label: "Password",
       placeholder: "Enter your password",
     },
   ];
   const [formData, setFormData] = useState({
-    Email: "",
-    Password: "",
+    email: "",
+    password: "",
   });
+  const dispatch = useDispatch()
 
   function handleFormSubmit(e) {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    console.log(formData, "formData");
+    
+    dispatch(loginUser(formData)).then(data=>{
+      if(data.payload?.success){
+        console.log(data.payload)
+        
+        toast.success(`${data.payload?.message}`)
+      } else{
+        toast.error(`${data.payload?.message === undefined ? 'account not found, please register!' : data.payload?.message }`)
+      }
+    })
   }
   return (
     <div className="w-full min-h-screen flex justify-center items-center p-4">

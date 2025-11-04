@@ -7,9 +7,9 @@ const initialState = {
   user : null,
 }
 
-export const registerUser = createAsyncThunk('auth/loginUser',
+export const registerUser = createAsyncThunk('auth/registerUser',
   async(formData)=>{
-    const response = await axios.post(`${meta.process.env.BACKEND_URL}/api/auth/register`,
+    const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/register`,
       formData, { withCredentials: true }
     )
 
@@ -19,8 +19,8 @@ export const registerUser = createAsyncThunk('auth/loginUser',
 
 export const loginUser = createAsyncThunk('auth/loginUser',
   async(formData)=>{
-    const response = await axios.get(`${meta.process.env.BACKEND_URL}/api/auth/login`,
-      formData, { withCredentials: true }
+    const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/login`,
+       formData, { withCredentials: true }
     )
 
     return response?.data
@@ -28,32 +28,32 @@ export const loginUser = createAsyncThunk('auth/loginUser',
 )
 
 const authSlice = createSlice({
-  name : 'Auth',
+  name : 'auth',
   initialState,
   reducers : {},
   extraReducers : (builder)=>{
-    builder.addCase('registerUser/pending', (state)=>{
+    builder.addCase(registerUser.pending, (state)=>{
       state.isLoading = true
     })
-    builder.addCase('registerUser/fulfilled', (state, action)=>{
-      state.isLoading = false
-      state.isAuthenticated = true
-      state.user = action.payload.data
-    })
-    builder.addCase('registerUser/rejected', (state)=>{
+    .addCase(registerUser.fulfilled, (state, action)=>{
       state.isLoading = false
       state.isAuthenticated = false
       state.user = null
     })
-    builder.addCase('loginUser/pending', (state)=>{
+    .addCase(registerUser.rejected, (state)=>{
+      state.isLoading = false
+      state.isAuthenticated = false
+      state.user = null
+    })
+    .addCase(loginUser.pending, (state)=>{
       state.isLoading = true
     })
-    builder.addCase('loginUser/fulfilled', (state, action)=>{
+    .addCase(loginUser.fulfilled, (state, action)=>{
       state.isLoading = false
       state.isAuthenticated = true
-      state.user = action.payload.data
+      state.user = action.payload?.data
     })
-    builder.addCase('loginUser/rejected', (state)=>{
+    .addCase(loginUser.rejected, (state)=>{
       state.isLoading = false
       state.isAuthenticated = false
       state.user = null
@@ -62,4 +62,4 @@ const authSlice = createSlice({
 })
 
 
-export default authSlice;
+export default authSlice.reducer;

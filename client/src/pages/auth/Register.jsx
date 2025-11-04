@@ -1,34 +1,54 @@
 import FormControl from "@/components/common/FormControl";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { registerUser } from "@/store/auth-slice";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 function Register() {
+  const dispatch = useDispatch()
   const formControls = [
     {
       type: "input",
-      label: "Username",
+      name: "userName",
+      label: "UserName",
       placeholder: "Enter your username",
     },
     {
       type: "input",
+      name: "email",
       label: "Email",
       placeholder: "Enter your email",
     },
     {
       type: "input",
+      name: "password",
       label: "Password",
       placeholder: "Enter your password",
     },
   ];
   const [formData, setFormData] = useState({
-    Email: "",
-    Password: "",
+    userName : "",
+    email: "",
+    password: "",
   });
+  const navigate = useNavigate()
 
   function handleFormSubmit(e) {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    console.log(formData);
+    
+    dispatch(registerUser(formData)).then(data=>{
+      if(data.payload?.success){
+        toast.success(`${data.payload?.message}`)
+        navigate('/auth/login')
+      } else{
+        console.log(data)
+        toast.error(`${data.payload?.message === undefined ? 'user already registerd, Login please!' : data.payload?.message }`)
+      }
+    })
   }
+
   return (
     <div className="w-full min-h-screen flex justify-center items-center p-4">
       <div className="w-xl shadow-lg p-8 rounded-lg flex flex-col gap-2">
@@ -45,7 +65,7 @@ function Register() {
           formData={formData}
           setFormData={setFormData}
           onSubmit={handleFormSubmit}
-          buttonText="Login"
+          buttonText="Sign in"
         />
       </div>
     </div>

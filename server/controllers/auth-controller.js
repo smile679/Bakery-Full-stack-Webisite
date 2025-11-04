@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 
 const registerController = async (req, res) => {
   try {
-    const { userName, email, password } = req.body;
+    const { email, password, userName } = req.body;
     if (!userName || !email || !password) {
       return res.status(500).json({
         success: false,
@@ -33,6 +33,7 @@ const registerController = async (req, res) => {
       success: true,
       message: "user successfully registerd",
     });
+
   } catch (e) {
     console.error(e);
     res.status(500).json({
@@ -46,11 +47,12 @@ const loginController = async (req, res) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
-      return res.status(500).json({
+      return res.status(400).json({
         success: false,
         message: "Please provide both email and password",
       });
     }
+    
 
     const user = await User.findOne({ email });
     if (!user) {
@@ -78,13 +80,14 @@ const loginController = async (req, res) => {
       { expiresIn: "1d" }
     );
 
-    res.cookie("token",token,{ httpOnly: true, secure: true }).status(200).json(
+    res.cookie("token",token,{ httpOnly: true, secure: false }).status(200).json(
       {
-        sucess: true,
+        success: true,
         message : "Login successfully",
         data: {
           userName: user.userName,
           email: user.email,
+          role : user.role,
           token,
         },
       }
