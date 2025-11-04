@@ -15,7 +15,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { checkOutUser } from "./store/auth-slice";
 import { Spinner } from "./components/ui/spinner";
-import { LoaderIcon } from "lucide-react";
+
 
 function App() {
   const { isLoading, isAuthenticated, user } = useSelector(state=>state.auth)
