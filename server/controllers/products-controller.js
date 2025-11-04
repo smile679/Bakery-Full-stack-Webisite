@@ -59,13 +59,21 @@ const fetchProducts = async(req, res)=>{
   }
 }
 
-const updateProducts = async(req, res)=>{
+const updateProduct = async(req, res)=>{
   try{
-    const { id } = req.params
+    const { id } = req.params;
+    const {title, image, price} = req.body;
     if(!id){
      return res.status(400).json({
         success : false,
         message : "Id not provided!"
+      })
+    }
+
+    if(!title || !image || !price){
+     return res.status(400).json({
+        success : false,
+        message : "Title, Image or Price not provided!"
       })
     }
 
@@ -77,6 +85,19 @@ const updateProducts = async(req, res)=>{
       })
     }
 
+    editProduct.title = title
+    editProduct.price = price
+    editProduct.image = image
+
+    editProduct.save();
+
+    res.status(201).json({
+      success : true,
+      message : "Product successfully updated!",
+      data: editProduct,
+    })
+
+
   }catch(error){
    console.log(error);
    res.status(200).json({
@@ -86,7 +107,37 @@ const updateProducts = async(req, res)=>{
   }
 }
 
-// add
-// delete
-// fetch
-// update
+const deleteProduct = async(req, res)=>{
+  try{
+    const { id } = req.params;
+    if(!id){
+     return res.status(400).json({
+        success : false,
+        message : "Id not provided!"
+      })
+    }
+
+    const deleteProduct = await findByIdAndDelete(id)
+    if(!deleteProduct){
+      res.status(400).json({
+        success : false,
+        message : "Product not found!"
+      })
+    }
+
+    res.status(200).json({
+      success : true,
+      message : "Product successfully deleted!"
+    })
+
+  }catch(error){
+    console.log(error);
+    res.status(500).json({
+      success : true,
+      message : "Internal server error"
+    })
+  }
+}
+
+
+export { addProduct, fetchProducts, updateProduct, deleteProduct}
