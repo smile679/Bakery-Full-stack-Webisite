@@ -3,28 +3,27 @@ const product = require("../model/product");
 
 
 const addProduct = async(req, res) => {
-
   try{
       const { title, image, price } = req.body;
   if(!title, !price, !image){
-    return res.status(401).json({
+    return res.status(404).json({
       success : false,
-      message : "Image, Title or Price not provided!"
+      message : "Image, title or price not provided!"
     })
   }
 
-  const products = product({
+  const newProduct =new product({
     title,
     image,
     price,
   })
 
-  await products.save()
+  await newProduct.save()
 
-  res.status(200).json({
+  res.status(201).json({
     success : true,
     message : "Product successfully added",
-    data : products,
+    data : newProduct,
   })
 
   }catch(error){
@@ -40,21 +39,22 @@ const fetchProducts = async(req, res)=>{
   try{
     const products = await product.find({})
     if(!products){
-     return res.status(200).json({
-      success : true,
-      message : "Product successfully added"
+     return res.status(404).json({
+      success : false,
+      message : "Products not found!"
     })
     }
     
-  res.status(201).json({
+  res.status(200).json({
     success : true,
+    message : "Products successfully fetched!",
     data : products,
   })
   }catch(error){
-      console.log(error);
+      console.error(error);
       res.status(500).json({
       success : false,
-      message : "Product successfully added"
+      message : "Internal server error"
     })
   }
 }
@@ -64,45 +64,42 @@ const updateProduct = async(req, res)=>{
     const { id } = req.params;
     const {title, image, price} = req.body;
     if(!id){
-     return res.status(400).json({
+     return res.status(404).json({
         success : false,
-        message : "Id not provided!"
+        message : "Product Id is required!"
       })
     }
 
     if(!title || !image || !price){
-     return res.status(400).json({
+     return res.status(404).json({
         success : false,
         message : "Title, Image or Price not provided!"
       })
     }
 
-    const editProduct = await findByIdAndUpdate(id)
-    if(!editProduct){
-      res.status(400).json({
+    const updateProduct = await findByIdAndUpdate(id,
+      { title, image, price },
+      { new: true, runValidators: true }
+    )
+    if(!updateProduct){
+      res.status(404).json({
         success : false,
         message : "Product not found!"
       })
     }
 
-    editProduct.title = title
-    editProduct.price = price
-    editProduct.image = image
-
-    editProduct.save();
-
-    res.status(201).json({
+    res.status(200).json({
       success : true,
       message : "Product successfully updated!",
-      data: editProduct,
+      data: updateProduct,
     })
 
 
   }catch(error){
    console.log(error);
-   res.status(200).json({
-    success : true,
-    message : "Product successfully added"
+   res.status(500).json({
+    success : false,
+    message : "Internal server error"
   })
   }
 }
@@ -111,15 +108,15 @@ const deleteProduct = async(req, res)=>{
   try{
     const { id } = req.params;
     if(!id){
-     return res.status(400).json({
+     return res.status(404).json({
         success : false,
-        message : "Id not provided!"
+        message : "Product Id not provided!"
       })
     }
 
     const deleteProduct = await findByIdAndDelete(id)
     if(!deleteProduct){
-      res.status(400).json({
+      res.status(404).json({
         success : false,
         message : "Product not found!"
       })
