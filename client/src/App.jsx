@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { checkOutUser } from "./store/auth-slice";
 import { Spinner } from "./components/ui/spinner";
+import Products from "./pages/admin-view/Products";
 
 
 function App() {
@@ -70,6 +71,7 @@ function App() {
         }
       >
         <Route path="dashboard" element={<Dashboard />} />
+        <Route path="products" element={<Products />} />
         <Route path="orders" element={<Orders />} />
       </Route>
       <Route path="*" element={
