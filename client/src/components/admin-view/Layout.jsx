@@ -7,7 +7,7 @@ function AdminLayout() {
   const navigate = useNavigate();
   const location = useLocation();
   return (
-    <section className="h-screen flex p-4">
+    <section className="h-screen flex p-4 gap-3">
       <div className="w-sm h-full">
         <Card className="w-full h-full mb-4">
           <CardHeader>
@@ -43,7 +43,7 @@ function AdminLayout() {
           </CardContent>
         </Card>
       </div>
-      <div>
+      <div className="flex-1 h-full overflow-y-auto">
         <Outlet />
       </div>
     </section>

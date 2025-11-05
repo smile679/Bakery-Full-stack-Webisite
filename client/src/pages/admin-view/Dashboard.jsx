@@ -1,6 +1,8 @@
 
 
 function Dashboard() {
+  console.log('sdxfcvbjnk');
+  
   return ( 
     <div>
       dashboard
