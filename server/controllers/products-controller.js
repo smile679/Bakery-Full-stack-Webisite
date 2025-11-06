@@ -1,4 +1,25 @@
+const { imageUploadUtil } = require("../config/cloudinary");
 const product = require("../model/product");
+
+const handleImageUpload = async (req, res) => {
+  try {
+    const b64 = Buffer.from(req.file.buffer).toString("base64");
+    const url = "data:" + req.file.mimetype + ";base64," + b64;
+    const result = await imageUploadUtil(url);
+
+    res.status(200).json({
+      success: true,
+      message: "Image uploaded successfully",
+      data: result,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      success: false,
+      message: "Image upload failed",
+    });
+  }
+};
 
 const addProduct = async (req, res) => {
   try {
@@ -131,4 +152,10 @@ const deleteProduct = async (req, res) => {
   }
 };
 
-module.exports = { addProduct, fetchProducts, updateProduct, deleteProduct };
+module.exports = {
+  addProduct,
+  fetchProducts,
+  updateProduct,
+  deleteProduct,
+  handleImageUpload,
+};

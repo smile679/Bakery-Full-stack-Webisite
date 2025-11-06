@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { checkOutUser } from "./store/auth-slice";
 import { Spinner } from "./components/ui/spinner";
 import Products from "./pages/admin-view/Products";
+import Users from "./pages/admin-view/Users";
 
 
 function App() {
@@ -73,6 +74,7 @@ function App() {
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="products" element={<Products />} />
         <Route path="orders" element={<Orders />} />
+        <Route path="users" element={<Users />} />
       </Route>
       <Route path="*" element={
         <CheckAuth isAuthenticated={isAuthenticated} user={user}>

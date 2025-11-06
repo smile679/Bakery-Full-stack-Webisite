@@ -4,8 +4,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "@/components/ui/sheet";
+import { handleImageUpload } from "@/store/admin/image-upload-slice";
 import { CloudUpload, Upload } from "lucide-react";
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 
 function Products() {
@@ -30,6 +32,8 @@ function Products() {
       name: 'title',
     },
   ];
+  const dispatch = useDispatch();
+  const { imageIsLoading, imagesData } = useSelector((state) => state.imageUpload);
 
   function onSubmit(e) {
     e.preventDefault();
@@ -56,9 +60,12 @@ function Products() {
     }
     setIsDragging(false);
   }
+
+  useEffect(() => {
+    if(file) dispatch(handleImageUpload(file)).then(data=>console.log(data))
+  }, [file]);
   
-  
-  return ( 
+  return (
     <Fragment>
       <Card className="h-full">
         <CardHeader>
@@ -84,11 +91,18 @@ function Products() {
           onDragOver={handleOnDragOver}
           onDragLeave={handleOnDragLeave}
           className={`border-2 border-dashed rounded-xl ${isDragging ? 'bg-green-100 border-green-400' : 'border-muted'}`}>
-            <Label className="h-32 flex flex-col justify-center items-center cursor-pointer">
-              <input type="file" className="hidden" ref={fileInputRef} onChange={(e) => setFile(e.target.files[0])} />
-              <CloudUpload size={35} strokeWidth={2.5} className="text-muted-foreground" />
-              <span className="text-sm text-muted-foreground mt-2">{file ? file.name : 'Click or Drag to upload product image'}</span>
-            </Label>
+            {
+              imageIsLoading ? (
+              <div className="w-full h-32 flex justify-center items-center">
+                <Spinner />
+              </div>
+            ) : (
+              <Label className="h-32 flex flex-col justify-center items-center cursor-pointer">
+                <input type="file" className="hidden" ref={fileInputRef} onChange={(e) => setFile(e.target.files[0])} />
+                <CloudUpload size={35} strokeWidth={2.5} className="text-muted-foreground" />
+                <span className="text-sm text-muted-foreground mt-2">{file ? file.name : 'Click or Drag to upload product image'}</span>
+              </Label>
+            )}
           </div>
           <div>
             <FormControl

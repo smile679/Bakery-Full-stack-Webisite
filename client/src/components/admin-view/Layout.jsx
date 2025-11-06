@@ -40,6 +40,14 @@ function AdminLayout() {
             >
               Orders
             </Button>
+            <Button
+              variant="outline"
+              className={`w-full mb-3 text-muted-foreground text-xl
+                ${location.pathname === '/admin/users' ? 'bg-foreground/10' : ''}`}
+              onClick={()=>navigate('/admin/users')}
+            >
+              Users
+            </Button>
           </CardContent>
         </Card>
       </div>

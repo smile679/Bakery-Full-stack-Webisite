@@ -3,13 +3,18 @@ import axios from "axios";
 
 const initialState = {
   isLoading : false,
-  products : [],
+  productsList : [],
 }
 
 export const addProduct = createAsyncThunk('products/addProduct',
   async({ title, image, price})=>{
     const response =await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/products/add`,
-      {title, image, price}, { withCredentials: true }
+      {title, image, price},
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
     )
 
     return response?.data
@@ -18,18 +23,21 @@ export const addProduct = createAsyncThunk('products/addProduct',
 
 export const fetchProducts = createAsyncThunk('products/fetchProducts',
   async()=>{
-    const response =await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/products/get`, 
-      { withCredentials: true })
+    const response =await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/products/get`, )
 
     return response?.data
   }
 )
 
-export const updateProducts = createAsyncThunk('products/updateProducts',
+export const editProducts = createAsyncThunk('products/editProducts',
   async({ title, image, price, id})=>{
     const response =await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/products/update/${id}`,
       {title, image, price},
-      { withCredentials: true }
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
     )
 
     return response?.data
@@ -38,9 +46,7 @@ export const updateProducts = createAsyncThunk('products/updateProducts',
 
 export const deleteProducts = createAsyncThunk('products/deleteProducts',
   async({ id })=>{
-    const response =await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/products/delete/${id}`,
-      { withCredentials: true }
-    )
+    const response =await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/products/delete/${id}`)
 
     return response?.data
   }
@@ -56,7 +62,7 @@ const productsSlice = createSlice({
     })
     .addCase(addProduct.fulfilled, (state, action)=>{
       state.isLoading = false;
-      state.products = action.payload?.success ? action.payload?.data : state.products;
+      state.productsList = action.payload?.success ? action.payload?.data : state.products;
     })
     .addCase(addProduct.rejected, (state, action)=>{
       state.isLoading = false;
@@ -66,19 +72,19 @@ const productsSlice = createSlice({
     })
     .addCase(fetchProducts.fulfilled, (state, action)=>{
       state.isLoading = false;
-      state.products = action.payload?.success ? action.payload?.data : [];
+      state.productsList = action.payload?.success ? action.payload?.data : [];
     })
     .addCase(fetchProducts.rejected, (state, action)=>{
       state.isLoading = false;
-      state.products = [];
+      state.productsList = [];
     })
-    .addCase(updateProducts.pending, (state)=>{
+    .addCase(editProducts.pending, (state)=>{
       state.isLoading = true;
     })
-    .addCase(updateProducts.fulfilled, (state, action)=>{
+    .addCase(editProducts.fulfilled, (state, action)=>{
       state.isLoading = false;
     })
-    .addCase(updateProducts.rejected, (state, action)=>{
+    .addCase(editProducts.rejected, (state, action)=>{
       state.isLoading = false;
     })
     .addCase(deleteProducts.pending, (state)=>{
