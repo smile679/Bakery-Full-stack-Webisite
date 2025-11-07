@@ -24,14 +24,14 @@ const imageUploadSlice = createSlice({
   reducers : {},
   extraReducers : (builder)=>{
     builder.addCase(handleImageUpload.pending, (state)=>{
-      state.ImageLoading = true;
+      state.imageIsLoading = true;
     })
     .addCase(handleImageUpload.fulfilled, (state, action)=>{
-      state.ImageLoading = false;
+      state.imageIsLoading = false;
       state.imagesData = action.payload?.success ? action.payload?.data : [];
     })
     .addCase(handleImageUpload.rejected, (state, action)=>{
-      state.ImageLoading = false;
+      state.imageIsLoading = false;
       state.imagesData = [];
     })
   }
