@@ -7,9 +7,9 @@ function AdminLayout() {
   const navigate = useNavigate();
   const location = useLocation();
   return (
-    <section className="h-screen flex p-4 gap-3">
-      <div className="w-sm h-full">
-        <Card className="w-full h-full mb-4">
+    <section className="min-h-screen flex max-sm:flex-col p-4 gap-3">
+      <div className="max-w-sm h-full">
+        <Card className="w-full mb-4">
           <CardHeader>
             <CardTitle className="w-full flex items-center justify-center text-2xl text-muted-foreground">
               <img src={bakeryLogo} alt="Bakery Logo" className="w-25 h-25"/>
@@ -51,7 +51,7 @@ function AdminLayout() {
           </CardContent>
         </Card>
       </div>
-      <div className="flex-1 h-full overflow-y-auto">
+      <div className="h-full overflow-y-auto">
         <Outlet />
       </div>
     </section>

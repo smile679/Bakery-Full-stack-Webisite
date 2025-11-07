@@ -1,5 +1,5 @@
 const { imageUploadUtil } = require("../config/cloudinary");
-const product = require("../model/product");
+const Product = require("../model/product");
 
 const handleImageUpload = async (req, res) => {
   try {
@@ -31,7 +31,7 @@ const addProduct = async (req, res) => {
       });
     }
 
-    const newProduct = new product({
+    const newProduct = new Product({
       title,
       image,
       price,
@@ -55,7 +55,7 @@ const addProduct = async (req, res) => {
 
 const fetchProducts = async (req, res) => {
   try {
-    const products = await product.find({});
+    const products = await Product.find({});
     if (!products) {
       return res.status(404).json({
         success: false,
@@ -77,27 +77,52 @@ const fetchProducts = async (req, res) => {
   }
 };
 
+const fetchSingleProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await Product.findById(id);
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found!",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Product successfully fetched!",
+      data: product,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+};
+
 const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, image, price } = req.body;
+    const { title, price } = req.body;
     if (!id) {
       return res.status(404).json({
         success: false,
-        message: "Product Id is required!",
+        message: "Product id is required!",
       });
     }
 
-    if (!title || !image || !price) {
+    if (!title || !price) {
       return res.status(404).json({
         success: false,
-        message: "Title, Image or Price not provided!",
+        message: "Title or Price not provided!",
       });
     }
 
-    const updateProduct = await findByIdAndUpdate(
+    const updateProduct = await Product.findByIdAndUpdate(
       id,
-      { title, image, price },
+      { title, price },
       { new: true, runValidators: true }
     );
     if (!updateProduct) {
@@ -131,7 +156,7 @@ const deleteProduct = async (req, res) => {
       });
     }
 
-    const deleteProduct = await findByIdAndDelete(id);
+    const deleteProduct = await Product.findByIdAndDelete(id);
     if (!deleteProduct) {
       res.status(404).json({
         success: false,
@@ -155,6 +180,7 @@ const deleteProduct = async (req, res) => {
 module.exports = {
   addProduct,
   fetchProducts,
+  fetchSingleProduct,
   updateProduct,
   deleteProduct,
   handleImageUpload,

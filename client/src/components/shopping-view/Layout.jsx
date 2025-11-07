@@ -4,8 +4,7 @@ import ShoppingHeader from "./shopping-header";
 
 function ShoppingLayout() {
   return ( 
-    <div className="relative w-full min-h-screen flex flex-col">
-      <ShoppingHeader />
+    <div className="w-full min-h-screen flex flex-col">
       <Outlet />
     </div>
    );

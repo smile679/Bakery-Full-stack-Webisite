@@ -42,7 +42,7 @@ export const checkOutUser = createAsyncThunk('auth/checkOutUser',
     const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/auth/checkout`,
        { withCredentials: true }
     )
-    console.log(response?.data, 'response data in checkOutUser');
+    // console.log(response?.data, 'response data in checkOutUser');
     return response?.data
   }
 )

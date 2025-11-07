@@ -6,7 +6,7 @@ import productReducer from "../store/products-slice/index.js"
  const store = configureStore({
    reducer: {
       auth : authReducer,
-      Products : productReducer,
+      products : productReducer,
       imageUpload : imageUploadReducer
    },
  })

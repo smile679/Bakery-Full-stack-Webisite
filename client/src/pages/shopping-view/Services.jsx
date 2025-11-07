@@ -7,6 +7,9 @@ import f5 from '../../assets/f5.png'
 import f6 from '../../assets/f6.png'
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchProducts } from "@/store/products-slice";
 
 function Services() {
   const breads = [
@@ -42,10 +45,16 @@ function Services() {
   }
   ]
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { productsList } = useSelector((state) => state.products);
 
   function handleAddToCart(e) {
     console.log("Added to cart");
   }
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
   return ( 
     <div id="Services" className="flex flex-col items-center justify-center mt-10">
@@ -54,7 +63,7 @@ function Services() {
         </h1>
         <div className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-5 px-2 sm:px-10 mt-20 sm:mt-30 mb-10">
         {
-          breads.map((bread, index) =>(
+          productsList.slice(0, 8).map((bread, index) =>(
             <FoodCard
               key={index}
               image={bread?.image}
