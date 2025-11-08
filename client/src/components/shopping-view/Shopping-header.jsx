@@ -60,7 +60,7 @@ function ShoppingHeader() {
             <ul className="hidden sm:flex sm:mr-5">
               {navbar &&
                 navbar.map((item) => (
-                  <li>
+                  <li key={item.id}>
                     <Link
                       to={item.id}
                       className="text-white hover:text-gray-300 hover:scale-x-115 text-xl font-bold ml-5 lg:ml-10 text-shadow-black text-shadow-sm cursor-pointer"
@@ -103,7 +103,7 @@ function ShoppingHeader() {
               <DropdownMenuContent 
               portal={false}
               className="w-50 bg-secondary text-white border border-gray-700 rounded-md shadow-lg">
-                {navbar &&
+                {/* {navbar &&
                   navbar.map((item, index) => (
                     <div key={item.id}>
                       <DropdownMenuItem asChild>
@@ -123,23 +123,13 @@ function ShoppingHeader() {
                         {index !== navbar.length - 1 && <DropdownMenuSeparator />
                       }
                     </div>
-                  ))}
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <button 
-                      onClick={() => handleLogout()}
-                      className="flex items-center text-white text-base hover:bg-gray-800 px-2 py-2 cursor-pointer"
-                      >
-                        Logout
-                      <LogOut className="ml-2" />
-                    </button>
-                  </DropdownMenuItem>
+                  ))} */}
+                  {/* <DropdownMenuSeparator /> */}
                   {
                     isAuthenticated ? (
                       <>
-                        <DropdownMenuSeparator />
-                            <DropdownMenuItem>
-                          <button 
+                        <DropdownMenuItem>
+                          <button
                             onClick={() => navigate("/auth/logout")}
                             className="flex items-center text-white text-base hover:bg-gray-800 px-2 py-2 cursor-pointer"
                             >
@@ -148,7 +138,17 @@ function ShoppingHeader() {
                           </button>
                         </DropdownMenuItem>
                       </>
-                    ) : null
+                    ) : (
+                      <DropdownMenuItem>
+                          <button
+                            onClick={() => navigate("/auth/logout")}
+                            className="flex items-center text-white text-base hover:bg-gray-800 px-2 py-2 cursor-pointer"
+                            >
+                              LogIn
+                            <LogIn className="ml-2" />
+                          </button>
+                        </DropdownMenuItem>
+                    )
                   }
               </DropdownMenuContent>
             </DropdownMenu>
