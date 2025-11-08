@@ -19,7 +19,6 @@ function Home() {
     navigate("/shop/home");
   }
 
-
   return (
     <section className="relative  w-full flex flex-col">
         <ShoppingHeader />
