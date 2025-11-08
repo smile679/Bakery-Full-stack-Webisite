@@ -27,7 +27,7 @@ function HeroHeader() {
       link: "/services",
     },
     {
-      id: "Contact Us",
+      id: "Contact",
       link: "/contact",
     }
   ];
