@@ -100,7 +100,9 @@ function ShoppingHeader() {
                   className="text-white mx-5 hover:none"
                 />
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-50 bg-secondary text-white border border-gray-700 rounded-md shadow-lg">
+              <DropdownMenuContent 
+              portal={false}
+              className="w-50 bg-secondary text-white border border-gray-700 rounded-md shadow-lg">
                 {navbar &&
                   navbar.map((item, index) => (
                     <div key={item.id}>
@@ -113,6 +115,7 @@ function ShoppingHeader() {
                           spy={true}
                           exact="true"
                           offset={-70}
+                          onClick={() => setOpen(false)}
                         >
                           {item.id}
                         </Link>
