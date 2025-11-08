@@ -50,6 +50,7 @@ function Services() {
 
   function handleAddToCart(e) {
     console.log("Added to cart");
+    navigate("/auth/login");
   }
 
   useEffect(() => {

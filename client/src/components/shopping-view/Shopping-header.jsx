@@ -130,7 +130,7 @@ function ShoppingHeader() {
                       <>
                         <DropdownMenuItem>
                           <button
-                            onClick={() => navigate("/auth/logout")}
+                            onClick={handleLogout}
                             className="flex items-center text-white text-base hover:bg-gray-800 px-2 py-2 cursor-pointer"
                             >
                               Logout
@@ -141,7 +141,7 @@ function ShoppingHeader() {
                     ) : (
                       <DropdownMenuItem>
                           <button
-                            onClick={() => navigate("/auth/logout")}
+                            onClick={() => navigate("/auth/login")}
                             className="flex items-center text-white text-base hover:bg-gray-800 px-2 py-2 cursor-pointer"
                             >
                               LogIn

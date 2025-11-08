@@ -81,7 +81,7 @@ function HeroHeader() {
                 />
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-50 bg-secondary text-white border border-gray-700 rounded-md shadow-lg">
-                {navbar &&
+                {/* {navbar &&
                   navbar.map((item, index) => (
                     <div key={item.id}>
                       <DropdownMenuItem asChild>
@@ -100,8 +100,8 @@ function HeroHeader() {
                         {index !== navbar.length - 1 && <DropdownMenuSeparator />
                       }
                     </div>
-                  ))}
-                  <DropdownMenuSeparator />
+                  ))} */}
+                  {/* <DropdownMenuSeparator /> */}
                   <DropdownMenuItem>
                     <button 
                       onClick={() => navigate("/auth/login")}
