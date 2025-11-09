@@ -1,10 +1,4 @@
 import FoodCard from "@/components/common/FoodCard";
-import f1 from '../../assets/f1.png'
-import f2 from '../../assets/f2.png'
-import f3 from '../../assets/f3.png'
-import f4 from '../../assets/f4.png'
-import f5 from '../../assets/f5.png'
-import f6 from '../../assets/f6.png'
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,38 +6,6 @@ import { useEffect } from "react";
 import { fetchProducts } from "@/store/products-slice";
 
 function Services() {
-  const breads = [
-  {
-    image : f1,
-    title : "Whole Grain",
-    price : "$30",
-  },
-  {
-    image : f2,
-    title : "Sourdough",
-    price : "$46",
-  },
-  {
-    image : f3,
-    title : "Rye Bread",
-    price : "$40",
-  },
-  {
-    image : f4,
-    title : "Baguette",
-    price : "$25",
-  },
-  {
-    image : f5,
-    title : "Focaccia",
-    price : "$35",
-  },
-  {
-    image : f6,
-    title : "Ciabatta",
-    price : "$45",
-  }
-  ]
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { productsList } = useSelector((state) => state.products);

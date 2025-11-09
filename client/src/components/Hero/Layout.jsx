@@ -25,9 +25,15 @@ function HeroLayout() {
       <div id="Home" className="flex flex-col min-w-fit min-h-screen bg-[url(@/assets/hero.png)] bg-cover bg-center">
         <HeroHeader />
         <Home />
+        <svg class="absolute -bottom-4 left-0 w-full h-20 rotate-180" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <path d="M0,0 L110,0C35,150 35,0 0,100z" fill="#ffffff"></path>
+        </svg>
       </div>
       <Services />
-      <div className="min-w-fit h-[442px] flex flex-col items-center justify-center bg-[url(@/assets/rectangle.png)] bg-cover bg-left mb-20 ">
+      <div className="relative min-w-fit h-[442px] flex flex-col items-center justify-center bg-[url(@/assets/rectangle.png)] bg-cover bg-left mb-20 ">
+        <svg class="absolute -top-2 left-0 w-full h-10" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <path d="M0,0 L110,0C35,150 35,0 0,100z" fill="#ffffff"></path>
+        </svg>
         <h1 className="text-6xl sm:text-7xl text-secondary font-sansita-swashed text-pretty text-center">
           20 % Off your,
           <br />
@@ -42,6 +48,9 @@ function HeroLayout() {
          className="w-50 h-12 bg-secondary text-white font-bold">
           Order Now
         </Button>
+        <svg class="absolute -bottom-2 left-0 w-full h-10 rotate-180" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <path d="M0,0 L110,0C35,150 35,0 0,100z" fill="#ffffff"></path>
+        </svg>
       </div>
       <div className="flex flex-col justify-center items-center mt-10">
         <h1 className="text-4xl sm:text-5xl font-bold font-sansita-swashed text-[#111111]">

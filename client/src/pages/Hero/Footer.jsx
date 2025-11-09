@@ -9,7 +9,10 @@ import { Separator } from "@/components/ui/separator";
 function Footer() {
   return (
     <footer id="Contact" className="w-full">
-      <div className="min-w-fit h-[500px] flex flex-col justify-between bg-[url(@/assets/footer.png)] bg-cover bg-center px-3 sm:px-10 py-5">
+      <div className="relative min-w-fit h-[500px] flex flex-col justify-between bg-[url(@/assets/footer.png)] bg-cover bg-center px-3 sm:px-10 py-5">
+        <svg class="absolute -top-2 left-0 w-full h-10" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <path d="M0,0 L110,0C35,150 35,0 0,100z" fill="#ffffff"></path>
+        </svg>
         <div className="w-full max-w-7xl mx-auto flex max-sm:flex-col justify-between items-center py-4 sm:py-6">
           <Link
             to="hero"

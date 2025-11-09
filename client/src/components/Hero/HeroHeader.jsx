@@ -10,6 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import { useSelector } from "react-redux";
 
 
 function HeroHeader() {
@@ -33,7 +34,7 @@ function HeroHeader() {
   ];
   const navigate = useNavigate();
   const [ open, setOpen] = useState(null);
-  const isAuthenticated = false; 
+  const { isAuthenticated } = useSelector((state) => state.auth);
 
   return (
     <header className="w-full py-5">
@@ -41,7 +42,7 @@ function HeroHeader() {
         <nav className="w-full flex justify-between items-center px-5 md:px-10 sm:mr-10">
           <div className="w-full flex items-center">
               <RouterLink to="/">
-                <img src={logo} className="w-14 h-14 ml-5 sm:ml-0 cursor-pointer" />
+                <img src={logo} className="w-14 h-14 sm:ml-0 cursor-pointer" />
               </RouterLink>
             <ul className="hidden sm:flex sm:mr-5">
               {navbar &&
@@ -77,7 +78,7 @@ function HeroHeader() {
                 <Menu
                   size="40px"
                   stroke-width="3px"
-                  className="text-white mr-5 hover:none"
+                  className="text-white hover:none"
                 />
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-50 bg-secondary text-white border border-gray-700 rounded-md shadow-lg">
