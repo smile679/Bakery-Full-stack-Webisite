@@ -19,7 +19,7 @@ function About() {
         </div>
         <p className="text-chart-5 mb-5 font-semibold text-shadow-gray-800 text-shadow-sm">south 13th street</p>
         <Button
-          onClick={() => navigate("/about")}
+          onClick={() => navigate("/auth/login")}
           className="w-50 h-12 bg-secondary text-white font-bold">
           Read More
         </Button>

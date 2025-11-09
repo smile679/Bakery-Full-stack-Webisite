@@ -33,7 +33,7 @@ function HeroHeader() {
   ];
   const navigate = useNavigate();
   const [ open, setOpen] = useState(null);
-  const isAuthenticated = false; // Replace with actual authentication logic
+  const isAuthenticated = false; 
 
   return (
     <header className="w-full py-5">

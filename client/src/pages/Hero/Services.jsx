@@ -5,6 +5,9 @@ import f3 from '../../assets/f3.png'
 import f4 from '../../assets/f4.png'
 import f5 from '../../assets/f5.png'
 import f6 from '../../assets/f6.png'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
+// import { Navigate } from 'react-router-dom'
 
 function Services() {
   const breads = [
@@ -39,9 +42,11 @@ function Services() {
     price : "$45",
   }
   ]
+  const navigate = useNavigate();
 
   const handleAddToCart = (e) => {
-    console.log("Added to cart");
+    toast.info("Please Login to add items to your cart!");
+    navigate("/auth/login");
   }
 
   return ( 
