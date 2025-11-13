@@ -1,4 +1,6 @@
-const addToCart = (req, res) => {
+const Cart = require("../model/cart.js");
+
+const addToCart = async(req, res) => {
   try {
     const {userId, productId, quantity} = req.body;
     if (!userId || !productId || !quantity) {
@@ -6,6 +8,32 @@ const addToCart = (req, res) => {
         success : false,
         message: "Missing required fields",
       });
+    }
+
+    const user = await Cart.findOne(userId);
+    if (!user) { 
+      const newCart = new Cart({
+        userId,
+        productId,
+        quantity,
+      })
+
+      await newCart.save();
+    } else {
+      const product = user.products.findIndex(item => item === productId )
+      if(product !== -1){
+        return res.status(400).json({
+          success : false,
+          message : "product already added!"
+        })
+      } else {
+        user.products.push({
+          productId,
+          quantity,
+        })
+      }
+
+
     }
 
 
@@ -18,7 +46,7 @@ const addToCart = (req, res) => {
   }
 };
 
-const updateCart = (req, res) => {
+const updateCart = async(req, res) => {
   try {
   } catch (error) {
     console.error("Error updating cart:", error);
@@ -29,7 +57,7 @@ const updateCart = (req, res) => {
   }
 };
 
-const deleteFromCart = (req, res) => {
+const deleteFromCart = async(req, res) => {
   try {
   } catch (error) {
     console.error("Error deleting from cart:", error);
