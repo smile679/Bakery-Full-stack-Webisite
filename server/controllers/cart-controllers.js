@@ -23,10 +23,9 @@ const addToCart = async(req, res) => {
     } else {
       const productIndex = userCart.products.findIndex(item => item.productId.toString() === productId )
       if(productIndex !== -1){
-        return res.status(400).json({
-          success : false,
-          message : "product already added!"
-        })
+        userCart.products[productIndex].quantity += 1
+
+        await userCart.save()
       } else {
         userCart.products.push({
           productId,
@@ -54,6 +53,8 @@ const addToCart = async(req, res) => {
 const fetchCartItems = async(req, res) => {
   try {
     const {userId} = req.params;
+    console.log(req.params);
+    
     if (!userId){
       return res.status(400).json({ 
         success : false,
@@ -63,7 +64,7 @@ const fetchCartItems = async(req, res) => {
 
     let userCart = await Cart.findOne({userId}).populate({
       path : 'products.productId',
-      select : ' title, image, price'
+      select : 'title image price'
     })
     if (!userCart ){
       return res.status(404).json({ 
@@ -82,9 +83,10 @@ const fetchCartItems = async(req, res) => {
 
     const populatedCartItems = validItems.map(item=> ({
       productId : item.productId._id,
+      image : item.productId.image,
       title : item.productId.title,
       price : item.productId.price,
-      quantity : item.productId.quantity,
+      quantity : item.quantity,
     }))
 
     res.status(200).json({
@@ -94,7 +96,7 @@ const fetchCartItems = async(req, res) => {
     })
 
   } catch (error){
-    console.error("Error deleting from cart:", error);
+    console.error("Error fetching from cart:", error);
     res.status(500).json({ 
       success : false,
       message: "Internal Server Error",

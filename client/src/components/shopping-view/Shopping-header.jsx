@@ -38,6 +38,7 @@ function ShoppingHeader() {
   const [ open, setOpen] = useState(null);
   const dispatch = useDispatch()
   const { isAuthenticated, user } = useSelector(state=>state.auth)
+  const { cartItems } = useSelector(state=>state.cart)
 
   function handleLogout() {
     dispatch(logOutUser()).then(data=>{
@@ -79,9 +80,10 @@ function ShoppingHeader() {
           <div className="flex items-center gap-5">
             <button 
               onClick={() => navigate("/auth/login")}
-              className="flex items-center text-white text-xl font-bold hover:text-gray-200 py-2 rounded-md transition duration-300 text-shadow-black text-shadow-sm cursor-pointer"
+              className="relative flex items-center text-white text-xl font-bold hover:text-gray-200 py-2 rounded-md transition duration-300 text-shadow-black text-shadow-sm cursor-pointer"
               >
               <ShoppingCart size="35px" className="mr-1 md:mr-5"/>
+              <span className="absolute -top-2 right-0">{cartItems.length}</span>
             </button>
             <button 
               onClick={handleLogout}

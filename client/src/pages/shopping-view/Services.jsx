@@ -4,23 +4,33 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchProducts } from "@/store/products-slice";
-import { addToCart } from "@/store/cart-slice";
+import { addToCart, fetchCartItems } from "@/store/cart-slice";
+import { toast } from "sonner";
 
 function Services() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { productsList } = useSelector((state) => state.products);
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);   
 
   function handleAddToCart(getProductId) {
-    // console.log( productId,"Added to cart");
-    dispatch(addToCart({ userId: user.id, productId : getProductId, quantity : 1 })).then(data=>console.log(data)
+    dispatch(addToCart({ userId: user.id, productId : getProductId, quantity : 1 })).then(data=>{
+      if(data.payload?.success){
+        toast.success(`${data.payload?.message}`)
+        dispatch(fetchCartItems({ userId : user?.id }))
+      } else {
+        toast.error('Product Not found!')
+      }
+    }
     )
-  
   }
 
   useEffect(() => {
     dispatch(fetchProducts());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchCartItems({ userId : user?.id }))
   }, [dispatch]);
 
   return ( 

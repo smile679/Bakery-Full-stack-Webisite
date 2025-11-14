@@ -1,12 +1,31 @@
 import FoodCard from "@/components/common/FoodCard";
-import { useSelector } from "react-redux";
+import { addToCart, fetchCartItems } from "@/store/cart-slice";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "sonner";
 
 
 function Listing() {
   const { productsList } = useSelector((state) => state.products);
-  const handleAddToCart = (e) => {
-    // Add your add to cart logic here
-  }
+  const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  function handleAddToCart(getProductId) {
+      dispatch(addToCart({ userId: user.id, productId : getProductId, quantity : 1 })).then(data=>{
+        if(data.payload?.success){
+          toast.success(`${data.payload?.message}`)
+          dispatch(fetchCartItems({ userId : user?.id }))
+        } else {
+          toast.error('Product Not found!')
+        }
+      }
+      )
+    }
+
+     useEffect(() => {
+        dispatch(fetchCartItems({ userId : user?.id }))
+      }, [dispatch]);
+
   return ( 
     <section>
       <div>
@@ -16,12 +35,10 @@ function Listing() {
       </div>
       <div className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-5 px-2 py-10 sm:mb-10">
         {
-          productsList.slice(0, 9).map((bread, index) =>(
+          productsList.map((bread, index) =>(
             <FoodCard
               key={index}
-              image={bread?.image}
-              title={bread?.title}
-              price={bread?.price}
+              foodItem={bread}
               btnText="Add to Cart"
               handleClick={handleAddToCart}
             />

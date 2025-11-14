@@ -10,6 +10,7 @@ const initialState = ({
 
 export const addToCart = createAsyncThunk("cart/addToCart",
   async({ userId, productId, quantity })=>{
+    
     const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/cart/add`,
       { userId, productId, quantity }
     )
@@ -20,7 +21,7 @@ export const addToCart = createAsyncThunk("cart/addToCart",
 
 export const fetchCartItems = createAsyncThunk("cart/fetchCartItems",
   async({ userId })=>{
-    const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/cart/get:${userId}`)
+    const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/cart/get/${userId}`)
 
     return response?.data
   }
