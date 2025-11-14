@@ -4,15 +4,17 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchProducts } from "@/store/products-slice";
+import { addToCart } from "@/store/cart-slice";
 
 function Services() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { productsList } = useSelector((state) => state.products);
+  const { user } = useSelector((state) => state.auth);
 
   function handleAddToCart(e) {
-    console.log("Added to cart");
-    navigate("/auth/login");
+    // console.log("Added to cart");
+    dispatch(addToCart({ userId: user.id, }))
   }
 
   useEffect(() => {
@@ -26,7 +28,7 @@ function Services() {
         </h1>
         <div className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-5 px-2 sm:px-10 mt-20 sm:mt-30 mb-10">
         {
-          productsList.slice(0, 8).map((bread, index) =>(
+          productsList.slice(0, 6).map((bread, index) =>(
             <FoodCard
               key={index}
               image={bread?.image}
