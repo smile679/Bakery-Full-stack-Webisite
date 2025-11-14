@@ -12,9 +12,11 @@ function Services() {
   const { productsList } = useSelector((state) => state.products);
   const { user } = useSelector((state) => state.auth);
 
-  function handleAddToCart(e) {
-    // console.log("Added to cart");
-    dispatch(addToCart({ userId: user.id, }))
+  function handleAddToCart(getProductId) {
+    // console.log( productId,"Added to cart");
+    dispatch(addToCart({ userId: user.id, productId : getProductId, quantity : 1 })).then(data=>console.log(data)
+    )
+  
   }
 
   useEffect(() => {
@@ -31,9 +33,7 @@ function Services() {
           productsList.slice(0, 6).map((bread, index) =>(
             <FoodCard
               key={index}
-              image={bread?.image}
-              title={bread?.title}
-              price={bread?.price}
+              foodItem={bread}
               btnText="Add to Cart"
               handleClick={handleAddToCart}
             />

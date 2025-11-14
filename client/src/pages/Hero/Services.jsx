@@ -29,9 +29,7 @@ function Services() {
           productsList.slice(0, 9).map((bread, index) =>(
             <FoodCard
               key={index}
-              image={bread?.image}
-              title={bread?.title}
-              price={bread?.price}
+              foodItem={bread}
               btnText="Add to Cart"
               handleClick={handleAddToCart}
             />
