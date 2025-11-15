@@ -1,5 +1,5 @@
 import { Link } from "react-scroll";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/backery-logo.png";
 import { Fragment, useState} from "react";
 import { LogIn, LogOut, Menu, ShoppingCart } from "lucide-react";
@@ -35,6 +35,7 @@ function ShoppingHeader() {
     }
   ];
   const navigate = useNavigate();
+  const location = useLocation()
   const [ open, setOpen] = useState(null);
   const dispatch = useDispatch()
   const { isAuthenticated, user } = useSelector(state=>state.auth)
@@ -58,34 +59,38 @@ function ShoppingHeader() {
               <RouterLink to="/">
                 <img src={logo} className="w-14 h-14 ml-5 sm:ml-0 cursor-pointer box-shadow-gray-800"/>
               </RouterLink>
-            <ul className="hidden sm:flex sm:mr-5">
-              {navbar &&
-                navbar.map((item) => (
-                  <li key={item.id}>
-                    <Link
-                      to={item.id}
-                      className="text-white hover:text-gray-300 hover:scale-x-115 text-xl font-bold ml-5 lg:ml-10 text-shadow-black text-shadow-sm cursor-pointer"
-                      smooth={true}
-                      duration={500}
-                      spy={true}
-                      exact="true"
-                      offset={-70}
-                    >
-                      {item.id}
-                    </Link>
-                  </li>
-                ))}
-            </ul>
+              {
+                location.pathname.includes('/shop/home') ? (
+                  <ul className="hidden sm:flex sm:mr-5">
+                    {navbar &&
+                      navbar.map((item) => (
+                        <li key={item.id}>
+                          <Link
+                            to={item.id}
+                            className="text-white hover:text-gray-300 hover:scale-x-115 text-xl font-bold ml-5 lg:ml-10 text-shadow-black text-shadow-sm cursor-pointer"
+                            smooth={true}
+                            duration={500}
+                            spy={true}
+                            exact="true"
+                            offset={-70}
+                          >
+                            {item.id}
+                          </Link>
+                        </li>
+                      ))}
+                  </ul>
+                ) : null
+              }
           </div>
           <div className="flex items-center gap-5">
             <button 
-              onClick={() => navigate("/auth/login")}
+              onClick={() => navigate("/shop/cart")}
               className="relative flex items-center text-white text-xl font-bold hover:text-gray-200 py-2 rounded-md transition duration-300 text-shadow-black text-shadow-sm cursor-pointer"
               >
               <ShoppingCart size="35px" className="mr-1 md:mr-5"/>
-              <span className="absolute -top-2 right-0">{cartItems.length}</span>
+              <span className="absolute -top-1 right-2">{cartItems.length}</span>
             </button>
-            <button 
+            <button
               onClick={handleLogout}
               className="hidden sm:flex items-center text-white text-xl font-bold hover:text-gray-200 py-2 rounded-md transition duration-300 text-shadow-black text-shadow-sm cursor-pointer"
               >

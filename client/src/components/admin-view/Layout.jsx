@@ -2,10 +2,15 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Button } from "../ui/button";
 import bakeryLogo from "../../assets/backery-logo.png";
+import { useDispatch } from "react-redux";
+import { logOutUser } from "@/store/auth-slice";
 
 function AdminLayout() {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
+
+
   return (
     <section className="min-h-screen flex max-sm:flex-col p-4 gap-3">
       <div className="max-w-sm h-full">
@@ -47,6 +52,13 @@ function AdminLayout() {
               onClick={()=>navigate('/admin/users')}
             >
               Users
+            </Button>
+            <Button
+              variant="outline"
+              className={`w-full mb-3 text-muted-foreground text-xl `}
+              onClick={()=>dispatch(logOutUser())}
+            >
+              LogOut
             </Button>
           </CardContent>
         </Card>

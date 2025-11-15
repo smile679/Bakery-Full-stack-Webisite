@@ -17,6 +17,7 @@ import { checkOutUser } from "./store/auth-slice";
 import { Spinner } from "./components/ui/spinner";
 import Products from "./pages/admin-view/Products";
 import Users from "./pages/admin-view/Users";
+import Cart from "./pages/shopping-view/Cart";
 
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
       >
         <Route path="home" element={<Home />} />
         <Route path="listing" element={<Listing />} />
+        <Route path="cart" element={<Cart />} />
       </Route>
       <Route
         path="/admin"

@@ -10,7 +10,6 @@ import { useNavigate } from "react-router-dom";
 import Services from "./Services";
 import About from "./About";
 import Featured from "../shopping-view/Featured";
-import ShoppingHeader from "@/components/shopping-view/Shopping-header";
 
 function Home() {
   const cakes = [Rectangle20, Rectangle21, Rectangle22, Rectangle23, Rectangle24, Rectangle25];
@@ -21,7 +20,6 @@ function Home() {
 
   return (
     <section className="relative  w-full flex flex-col">
-        <ShoppingHeader />
       <div id="Home" className="relative w-full min-h-screen mt-18 bg-[url(@/assets/hero.png)] bg-cover bg-center">
         <div className="flex flex-col ml-10 sm:ml-20 mt-20 ">
           <div>
@@ -34,15 +32,15 @@ function Home() {
           </div>
           <div className="flex items-center mt-50 sm:mt-10 md:mt-20 gap-5">
             <Button
-            onClick={handleShopNow}
-            className='w-30 h-11 bg-secondary hover:bg-secondary/80 text-white font-bold cursor-pointer'>
-              Shop Now
+              onClick={handleShopNow}
+              className='w-30 h-11 bg-secondary hover:bg-secondary/80 text-white font-bold cursor-pointer'>
+               Shop Now
             </Button>
             <Button
-              onClick={handleShopNow}
+              onClick={()=> navigate('/shop/listing')}
               variant='outline' className='w-30 h-11 text-secondary font-bold cursor-pointer'
             >
-              Order Now
+              Listing
             </Button>
           </div>
           <svg class="absolute -bottom-4 left-0 w-full h-20 rotate-180" viewBox="0 0 100 100" preserveAspectRatio="none">

@@ -19,15 +19,14 @@ function Listing() {
           toast.error('Product Not found!')
         }
       }
-      )
-    }
+      )}
 
      useEffect(() => {
         dispatch(fetchCartItems({ userId : user?.id }))
       }, [dispatch]);
 
   return ( 
-    <section>
+    <section className="mt-15">
       <div>
         <h1 className="text-2xl sm:text-3xl font-bold font-sansita-swashed text-center text-[#111111] mt-10">
           Product Listing

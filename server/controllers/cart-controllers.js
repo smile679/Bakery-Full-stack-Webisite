@@ -111,13 +111,13 @@ const updateCart = async(req, res) => {
       if(!quantity || !productId){
         res.status(500).json({ 
           success : false,
-          message: "quantity not provided!",
+          message: "missing required filds!",
         })
       }
     
     const userCart = await Cart.findOne({ userId })
     if(!userCart ){
-       return res.status(404).json({ 
+       return res.status(404).json({
           success : false,
           message: "cart not found!",
         })
@@ -139,8 +139,6 @@ const updateCart = async(req, res) => {
           data : userCart,
         })
       
-      
-
   } catch (error) {
     console.error("Error updating cart:", error);
     res.status(500).json({ 
@@ -150,8 +148,45 @@ const updateCart = async(req, res) => {
   }
 }
 
-const removeFromCart = async(req, res) => {
+const deleteFromCart = async(req, res) => {
   try {
+    const { userId, productId } = req.params
+    
+      if(!userId || !productId){
+        res.status(500).json({ 
+          success : false,
+          message: "missing required filds!",
+        })
+      }
+    
+    const userCart = await Cart.findOne({ userId })
+    if(!userCart ){
+      return res.status(404).json({
+        success : false,
+        message: "cart not found!",
+      })
+    }
+
+    const filteredCart = userCart.products.filter(item=> item.productId !== productId)
+    userCart.products = filteredCart
+    userCart.save()
+
+    res.status(200).json({
+      success : true,
+      message : "Item successfully deleted",
+      data : userCart,
+    })
+
+    //  const productIndex = userCart.products.findIndex(item => item.productId === productId);
+    //   if(productIndex !== -1){
+    //     return res.status(404).json({
+    //       success : false,
+    //       message : "product not found!"
+    //     })
+    //   } else {
+    //     userCart.products.split(productIndex, 1)
+    //   }
+
   } catch (error) {
     console.error("Error deleting from cart:", error);
     res.status(500).json({ 
@@ -165,5 +200,5 @@ module.exports = {
   addToCart,
   fetchCartItems,
   updateCart,
-  removeFromCart,
+  deleteFromCart,
 };
