@@ -88,7 +88,7 @@ function ShoppingHeader() {
               className="relative flex items-center text-white text-xl font-bold hover:text-gray-200 py-2 rounded-md transition duration-300 text-shadow-black text-shadow-sm cursor-pointer"
               >
               <ShoppingCart size="35px" className="mr-1 md:mr-5"/>
-              <span className="absolute -top-1 right-2">{cartItems.length}</span>
+              <span className="absolute -top-2 right-1">{cartItems.length}</span>
             </button>
             <button
               onClick={handleLogout}

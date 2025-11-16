@@ -25,10 +25,10 @@ function Listing() {
         dispatch(fetchCartItems({ userId : user?.id }))
       }, [dispatch]);
 
-  return ( 
-    <section className="mt-15">
+  return (
+    <section className="mt-20">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-bold font-sansita-swashed text-center text-[#111111] mt-10">
+        <h1 className="text-2xl sm:text-3xl font-bold font-sansita-swashed text-center text-[#111111] my-10">
           Product Listing
         </h1>
       </div>
