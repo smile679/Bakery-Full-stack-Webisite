@@ -109,6 +109,7 @@ Full-Stack Developer
 
 📁 Project Structure
 
+///bash
 Bakery-Fullstack-App/
 │
 ├── client/                # React frontend
