@@ -1,5 +1,8 @@
 🍰 Bakery Fullstack App
 
+Live - https://bakery-full-stack-webisite-front.onrender.com
+backend - live - https://bakery-full-stack-webisite-backend.onrender.com
+
 A full-featured e-commerce bakery web application built using MERN Stack (MongoDB, Express, React, Node.js, Redux) with complete user authentication, admin management, product handling, and order workflows.
 
 🚀 Features
