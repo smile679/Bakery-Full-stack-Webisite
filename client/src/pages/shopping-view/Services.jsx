@@ -13,26 +13,22 @@ function Services() {
   const { productsList } = useSelector((state) => state.products);
   const { user } = useSelector((state) => state.auth);
 
-  console.log(user.id);
-
   function handleAddToCart(getProductId) {
-    if(user && user.id) return;
-    dispatch(addToCart({ userId: user.id, productId : getProductId, quantity : 1 })).then(data=>{
-      if(data.payload?.success){
-        toast.success(`${data.payload?.message}`)
-        if(user && user.id){
+    console.log(user.id, getProductId);
+    
+    if(!user && !user.id) return;
+      dispatch(addToCart({ userId: user.id, productId : getProductId, quantity : 1 })).then(data=>{
+        if(data.payload?.success){
+          toast.success(`${data.payload?.message}`)
           dispatch(fetchCartItems({ userId : user?.id }))
+        } else {
+          toast.error('Product Not found!')
         }
-      } else {
-        toast.error('Product Not found!')
       }
-    }
     )
   }
 
   useEffect(() => {
-    if(!user && !user.id) return;
-
     dispatch(fetchProducts());
   }, [dispatch]);
 
@@ -42,7 +38,7 @@ function Services() {
     dispatch(fetchCartItems({ userId : user?.id }))
   }, [dispatch]);
 
-  return ( 
+  return (
     <div id="Services" className="flex flex-col items-center justify-center mt-10">
         <h1 className="text-4xl sm:text-5xl font-bold font-sansita-swashed text-[#111111]">
           Our Specialties
