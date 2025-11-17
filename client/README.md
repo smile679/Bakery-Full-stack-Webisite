@@ -1,16 +1,130 @@
-# React + Vite
+🍰 Bakery Fullstack App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-featured e-commerce bakery web application built using MERN Stack (MongoDB, Express, React, Node.js, Redux) with complete user authentication, admin management, product handling, and order workflows.
 
-Currently, two official plugins are available:
+🚀 Features
+🌐 Frontend (React + Redux Toolkit)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Modern, responsive UI with beautiful hero, about, services, and featured sections
 
-## React Compiler
+Product listing with categories, filtering, and dynamic cart management
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Authentication pages (Login & Register)
 
-## Expanding the ESLint configuration
+Protected routes using a custom CheckAuth component
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Separate layouts:
+
+Hero Layout – homepage & static sections
+
+Shopping Layout – shop, product details, cart, checkout
+
+Admin Layout – dashboard, products, orders
+
+🔐 Backend (Node.js + Express)
+
+Secure JWT Authentication & Authorization
+
+Role-based access: Admin and User
+
+REST APIs for:
+
+User registration & login
+
+Products (CRUD for admins)
+
+Cart operations
+
+Order creation & management
+
+Middleware for route protection & error handling
+
+🗄️ Database (MongoDB + Mongoose)
+
+Product schema
+
+User schema with roles
+
+Order schema
+
+Cart & quantity updates
+
+🛠️ Tech Stack
+Frontend
+
+React
+
+Redux Toolkit
+
+React Router
+
+Tailwind CSS
+
+ShadCN UI
+
+Lucide Icons
+
+Backend
+
+Node.js
+
+Express.js
+
+MongoDB
+
+Mongoose
+
+bcrypt
+
+jsonwebtoken
+
+👨‍🍳 Admin Features
+
+Add new products
+
+Edit & update products
+
+Delete products
+
+Manage customer orders (approve, reject, etc.)
+
+
+📦 Future Improvements
+
+Payment integration (Stripe)
+
+Inventory tracking
+
+Sales analytics dashboard
+
+Customer reviews & ratings
+
+Admin charts using Recharts
+
+🧑‍💻 Author
+
+Samison Gidey
+Full-Stack Developer
+(MERN, React, Tailwind, Node.js)
+
+📁 Project Structure
+
+//bash
+Bakery-Fullstack-App/
+│
+├── client/                # React frontend
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── store/
+│   │   └── App.jsx
+│   └── ...
+│
+├── server/                # Node + Express backend
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   └── server.js
+│
+└── README.md

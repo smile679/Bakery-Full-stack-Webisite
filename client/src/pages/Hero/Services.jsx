@@ -26,7 +26,7 @@ function Services() {
       </h1>
        <div className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-5 px-2 sm:px-10 py-20 sm:mb-10">
         {
-          productsList.slice(0, 9).map((bread, index) =>(
+          productsList.slice(0, 6).map((bread, index) =>(
             <FoodCard
               key={index}
               foodItem={bread}
