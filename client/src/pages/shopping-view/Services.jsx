@@ -13,11 +13,7 @@ function Services() {
   const { productsList } = useSelector((state) => state.products);
   const { user } = useSelector((state) => state.auth);
 
-    console.log(user);
-
-
   function handleAddToCart(getProductId) {
-    
     if(!user && !user.id) return;
       dispatch(addToCart({ userId: user.id, productId : getProductId, quantity : 1 })).then(data=>{
         if(data.payload?.success){

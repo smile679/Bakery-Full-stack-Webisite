@@ -22,7 +22,8 @@ function HeroLayout() {
   
   return (
     <section className="w-full">
-      <div id="Home" className="flex flex-col min-w-fit min-h-screen bg-[url(@/assets/hero.png)] bg-cover bg-center">
+      <div id="Home" 
+        className="flex flex-col min-w-fit min-h-screen bg-[url('https://res.cloudinary.com/dineyc77u/image/upload/f_auto,q_auto/v1763410115/hero_tof3ls.png')] bg-cover bg-center bg-no-repeat">
         <HeroHeader />
         <Home />
         <svg class="absolute -bottom-4 left-0 w-full h-20 rotate-180" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -30,7 +31,7 @@ function HeroLayout() {
         </svg>
       </div>
       <Services />
-      <div className="relative min-w-fit h-[442px] flex flex-col items-center justify-center bg-[url(@/assets/rectangle.png)] bg-cover bg-left mb-20 ">
+      <div className="relative min-w-fit h-[442px] flex flex-col items-center justify-center bg-[url('https://res.cloudinary.com/dineyc77u/image/upload/f_auto,q_auto/v1763411569/rectangle_jixztz.png')] bg-cover bg-left bg-no-repeat mb-20 ">
         <svg class="absolute -top-2 left-0 w-full h-10" viewBox="0 0 100 100" preserveAspectRatio="none">
           <path d="M0,0 L110,0C35,150 35,0 0,100z" fill="#ffffff"></path>
         </svg>

@@ -2,7 +2,7 @@ import FoodCard from '@/components/common/FoodCard'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { useDispatch, useSelector } from 'react-redux'
-import { use, useEffect } from 'react';
+import { useEffect } from 'react';
 import { fetchProducts } from '@/store/products-slice';
 
 function Services() {

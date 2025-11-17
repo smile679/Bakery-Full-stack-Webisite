@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 function About() {
   const navigate = useNavigate();
   return ( 
-    <div id='About' className="relative min-w-fit h-[442px] flex flex-col items-center justify-center bg-[url(@/assets/about.png)] bg-cover bg-right mb-5 sm:mb-20 ">
+    <div id='About' className="relative min-w-fit h-[442px] flex flex-col items-center justify-center bg-[url('https://res.cloudinary.com/dineyc77u/image/upload/f_auto,q_auto/v1763411640/about_p8stj2.png')] bg-cover bg-right bg-no-repeat mb-5 sm:mb-20 ">
       <svg class="absolute -top-3 left-0 w-full h-15" viewBox="0 0 100 100" preserveAspectRatio="none">
         <path d="M0,0 L110,0C35,150 35,0 0,100z" fill="#ffffff"></path>
       </svg>

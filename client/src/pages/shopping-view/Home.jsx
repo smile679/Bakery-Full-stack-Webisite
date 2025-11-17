@@ -20,8 +20,10 @@ function Home() {
 
   return (
     <section className="relative  w-full flex flex-col">
-      <div id="Home" className="relative w-full min-h-screen mt-18 bg-[url(@/assets/hero.png)] bg-cover bg-center">
-        <div className="flex flex-col ml-10 sm:ml-20 mt-20 ">
+      <div
+        id="Home"
+        className="relative w-full min-h-screen mt-18 bg-[url('https://res.cloudinary.com/dineyc77u/image/upload/f_auto,q_auto/v1763410115/hero_tof3ls.png')] bg-cover bg-center bg-no-repeat">
+        <div className="flex flex-col ml-10 sm:ml-20 mt-20 " >
           <div>
             <p className="text-2xl text-secondary-foreground font-semibold">
               Delicious Cafe
@@ -49,7 +51,9 @@ function Home() {
         </div>
       </div>
       <Services />
-      <div className="relative min-w-fit h-[442px] flex flex-col items-center justify-center bg-[url(@/assets/rectangle.png)] bg-cover bg-left mb-20 ">
+      <div 
+        className="relative min-w-fit h-[442px] flex flex-col items-center justify-center bg-[url('https://res.cloudinary.com/dineyc77u/image/upload/f_auto,q_auto/v1763411569/rectangle_jixztz.png')] bg-cover bg-left bg-no-repeat mb-20"
+      >
         <svg class="absolute -top-2 left-0 w-full h-10" viewBox="0 0 100 100" preserveAspectRatio="none">
           <path d="M0,0 L110,0C35,150 35,0 0,100z" fill="#ffffff"></path>
         </svg>

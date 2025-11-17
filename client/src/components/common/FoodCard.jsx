@@ -1,10 +1,12 @@
-import footer from '../../assets/footer.png'
 import { Button } from '../ui/button';
 
 function FoodCard({ foodItem, btnText, handleClick}) {
   return ( 
     <div className="w-full max-w-[400px] h-[250px] sm:h-[300px] relative rounded-2xl shadow-gray-800 shadow-md overflow-hidden">
-      <img src={footer} className='w-full h-full object-cover rounded-2xl'/>
+      <img src='https://res.cloudinary.com/dineyc77u/image/upload/f_auto,q_auto/v1763412331/footer_rncf6q.png' 
+        className='w-full h-full object-cover rounded-2xl'
+        loading='lazy'
+        />
       <img src={foodItem.image} className='absolute top-1 right-1 sm:right-3 w-2xs sm:w-3xs'/>
       <div className='w-full text-white font-semibold absolute bottom-5 px-2 sm:px-5'>
         <h3 className='text-2xl mb-2 text-shadow-gray-800 text-shadow-md'>${foodItem.price}</h3>
