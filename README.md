@@ -1,6 +1,7 @@
 🍰 Bakery Fullstack App
 
 Live - https://bakery-full-stack-webisite-front.onrender.com
+
 backend - live - https://bakery-full-stack-webisite-backend.onrender.com
 
 A full-featured e-commerce bakery web application built using MERN Stack (MongoDB, Express, React, Node.js, Redux) with complete user authentication, admin management, product handling, and order workflows.
@@ -112,7 +113,6 @@ Full-Stack Developer
 
 📁 Project Structure
 
-///bash
 Bakery-Fullstack-App/
 │
 ├── client/                # React frontend
@@ -125,9 +125,41 @@ Bakery-Fullstack-App/
 │
 ├── server/                # Node + Express backend
 │   ├── controllers/
+│   ├── config/
 │   ├── middleware/
 │   ├── models/
 │   ├── routes/
 │   └── server.js
+│   └── package.json
 │
 └── README.md
+
+## 🖼️ Screenshots
+
+### 🏠 Home Page
+![Home Page]([./screenshots/homepage.png](https://res.cloudinary.com/dineyc77u/image/upload/v1763417061/bakerFront_xvptpc.jpg))
+
+### 🛒 Shopping Listing View
+![Shopping Listing]([./screenshots/shopping.png](https://res.cloudinary.com/dineyc77u/image/upload/v1763417091/bakerSecond_owhgcg.jpg))
+
+### 🛒 Shopping First Order View
+![First Order](https://res.cloudinary.com/dineyc77u/image/upload/v1763417102/bakerThird_uezlbp.jpg)
+
+### 🛒 Shopping View
+![Featured Treates](https://res.cloudinary.com/dineyc77u/image/upload/v1763417117/bakerFourth_chtfyp.jpg)
+
+### 🛒 Shopping About View
+![About](https://res.cloudinary.com/dineyc77u/image/upload/v1763417126/bakerFifth_yfkevk.jpg)
+
+### 🛒 Shopping View
+![Featured Treates View](https://res.cloudinary.com/dineyc77u/image/upload/v1763417135/bakerSixth_is95sb.jpg)
+
+### 🛒 Shopping Footer View
+![Footer](https://res.cloudinary.com/dineyc77u/image/upload/v1763417154/bakerrrFooter_fs94md.jpg)
+
+### 🛒 Shopping Footer Register And Login View
+![Register And Login](https://res.cloudinary.com/dineyc77u/image/upload/v1763417154/bakerrrFooter_fs94md.jpg)
+
+
+### 🧑‍💼 Admin Dashboard
+![Dashboard]([./screenshots/dashboard.png](https://res.cloudinary.com/dineyc77u/image/upload/v1763418014/bakeryAdmin_ngx9cg.jpg))
