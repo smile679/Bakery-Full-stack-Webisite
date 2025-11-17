@@ -86,7 +86,7 @@ function Cart() {
                     <TableHead className="sr-only">Delete</TableHead>
                   </TableRow>
                 </TableHeader>
-                <TableBody className="">
+                <TableBody>
                   {cartItems &&
                     cartItems.map((product, index) => (
                       <TableRow key={index}>
@@ -136,6 +136,7 @@ function Cart() {
                           <Button
                             variant="outline"
                             onClick={() => handleDelete(product.productId)}
+                            className="cursor-pointer"
                           >
                             <Trash />
                           </Button>
@@ -144,7 +145,7 @@ function Cart() {
                     ))}
                 </TableBody>
                 <TableFooter>
-                  <TableRow className="bg-gray-950">
+                  <TableRow className="bg-gray-950 hover:bg-gray-950">
                     <TableCell colSpan={3} className="text-white">
                       Total
                     </TableCell>
@@ -179,7 +180,7 @@ function Cart() {
                   <h3 className="text-muted-foreground font-semibold">
                     Add Coupon Code
                   </h3>
-                  <MoveRight />
+                  <MoveRight className="ml-2 text-muted-foreground"/>
                 </div>
               </div>
             </CardContent>
