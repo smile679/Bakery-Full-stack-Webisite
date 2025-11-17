@@ -22,7 +22,7 @@ export const loginUser = createAsyncThunk('auth/loginUser',
     const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/login`,
        formData, { withCredentials: true }
     )
-    console.log(response?.data, 'response?.data');
+    // console.log(response?.data, 'response?.data');
     return response?.data
   }
 )
