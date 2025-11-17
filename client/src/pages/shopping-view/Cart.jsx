@@ -28,10 +28,10 @@ import { toast } from "sonner";
 function Cart() {
   const { cartItems } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch();  
 
   const totalPrice = cartItems.reduce((total, item) => {
-    return total + item.price * item.quantity;
+    return total + Number(item.price) * item.quantity;
   }, 0);
 
   function handleDelete(productId) {

@@ -11,13 +11,18 @@ function Services() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { productsList } = useSelector((state) => state.products);
-  const { user } = useSelector((state) => state.auth);   
+  const { user } = useSelector((state) => state.auth);
+
+  console.log(user.id);
 
   function handleAddToCart(getProductId) {
+    if(user && user.id) return;
     dispatch(addToCart({ userId: user.id, productId : getProductId, quantity : 1 })).then(data=>{
       if(data.payload?.success){
         toast.success(`${data.payload?.message}`)
-        dispatch(fetchCartItems({ userId : user?.id }))
+        if(user && user.id){
+          dispatch(fetchCartItems({ userId : user?.id }))
+        }
       } else {
         toast.error('Product Not found!')
       }
