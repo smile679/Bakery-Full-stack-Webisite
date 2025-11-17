@@ -65,9 +65,9 @@ function Cart() {
   }
 
   useEffect(() => {
-    if(user && user.id) return;
-    
+    if(user && user.id){
      dispatch(fetchCartItems({ userId: user?.id }))
+    }
   }, [dispatch]);
 
   return (
