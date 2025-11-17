@@ -31,10 +31,14 @@ function Services() {
   }
 
   useEffect(() => {
+    if(!user && !user.id) return;
+
     dispatch(fetchProducts());
   }, [dispatch]);
 
   useEffect(() => {
+    if(!user && !user.id) return;
+    
     dispatch(fetchCartItems({ userId : user?.id }))
   }, [dispatch]);
 
