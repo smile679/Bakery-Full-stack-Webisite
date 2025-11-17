@@ -54,33 +54,16 @@ Order schema
 Cart & quantity updates
 
 🛠️ Tech Stack
+
 Frontend
-
-React
-
-Redux Toolkit
-
-React Router
-
-Tailwind CSS
-
-ShadCN UI
-
-Lucide Icons
+- React        - Redux Toolkit
+- React Router - Tailwind CSS
+- ShadCN UI    - Lucide Icons
 
 Backend
-
-Node.js
-
-Express.js
-
-MongoDB
-
-Mongoose
-
-bcrypt
-
-jsonwebtoken
+- Node.js  - Express.js
+- MongoDB  - Mongoose
+- bcrypt   - jsonwebtoken
 
 👨‍🍳 Admin Features
 
@@ -111,36 +94,13 @@ Samison Gidey
 Full-Stack Developer
 (MERN, React, Tailwind, Node.js)
 
-📁 Project Structure
-
-Bakery-Fullstack-App/
-│
-├── client/                # React frontend
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── store/
-│   │   └── App.jsx
-│   └── ...
-│
-├── server/                # Node + Express backend
-│   ├── controllers/
-│   ├── config/
-│   ├── middleware/
-│   ├── models/
-│   ├── routes/
-│   └── server.js
-│   └── package.json
-│
-└── README.md
-
 ## 🖼️ Screenshots
 
 ### 🏠 Home Page
-![Home Page]([./screenshots/homepage.png](https://res.cloudinary.com/dineyc77u/image/upload/v1763417061/bakerFront_xvptpc.jpg))
+![Home Page](https://res.cloudinary.com/dineyc77u/image/upload/v1763417061/bakerFront_xvptpc.jpg)
 
 ### 🛒 Shopping Listing View
-![Shopping Listing]([./screenshots/shopping.png](https://res.cloudinary.com/dineyc77u/image/upload/v1763417091/bakerSecond_owhgcg.jpg))
+![Shopping Listing](https://res.cloudinary.com/dineyc77u/image/upload/v1763417091/bakerSecond_owhgcg.jpg)
 
 ### 🛒 Shopping First Order View
 ![First Order](https://res.cloudinary.com/dineyc77u/image/upload/v1763417102/bakerThird_uezlbp.jpg)
