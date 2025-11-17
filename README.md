@@ -118,8 +118,7 @@ Full-Stack Developer
 ![Footer](https://res.cloudinary.com/dineyc77u/image/upload/v1763417154/bakerrrFooter_fs94md.jpg)
 
 ### 🛒 Shopping Footer Register And Login View
-![Register And Login](https://res.cloudinary.com/dineyc77u/image/upload/v1763417154/bakerrrFooter_fs94md.jpg)
-
+![Register And Login](https://res.cloudinary.com/dineyc77u/image/upload/v1763417164/bakerLogin_fhwabb.jpg)
 
 ### 🧑‍💼 Admin Dashboard
-![Dashboard]([./screenshots/dashboard.png](https://res.cloudinary.com/dineyc77u/image/upload/v1763418014/bakeryAdmin_ngx9cg.jpg))
+![Dashboard](https://res.cloudinary.com/dineyc77u/image/upload/v1763418014/bakeryAdmin_ngx9cg.jpg)
