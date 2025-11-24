@@ -23,7 +23,7 @@ function HeroLayout() {
   return (
     <section className="w-full">
       <div id="Home" 
-        className="flex flex-col min-w-fit min-h-screen bg-[url('https://res.cloudinary.com/dineyc77u/image/upload/f_auto,q_auto/v1763410115/hero_tof3ls.png')] bg-cover bg-center bg-no-repeat">
+        className="flex flex-col min-w-fit min-h-screen bg-[url('https://res.cloudinary.com/dineyc77u/image/upload/f_auto,q_auto/v1763410115/hero_tof3ls.png')] bg-cover bg-center bg-no-repeat overflow-hidden">
         <HeroHeader />
         <Home />
         <svg class="absolute -bottom-4 sm:-bottom-5 left-0 w-full h-20 rotate-180" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -66,7 +66,7 @@ function HeroLayout() {
               className="w-full h-[250px] sm:h-[300px] rounded-2xl shadow-gray-500 shadow-sm object-cover"
             />
           ))
-          }
+        }
         </div>
       </div>
       <About />
